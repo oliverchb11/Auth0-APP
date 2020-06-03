@@ -1,0 +1,41 @@
+<h1>Perfil de usuario</h1>
+<hr />
+
+<div class="row">
+    <div class="row">
+        <div class="col-sm-12" *ngIf="auth.userProfile$ | async as profile">
+            <img [src]="profile.picture" height="200" width="200" class="img-thumbnail" alt="" />
+            <br />
+            <h4 class="text-danger">
+                ID:
+                <span class="info"> {{ profile.sub }}</span>
+            </h4>
+            <br />
+            <h4 class="text-danger">
+                Nombre: <span class="info"> {{ profile.given_name }}</span>
+            </h4>
+            <br />
+            <h4 class="text-danger">
+                Apellidos: <span class="info"> {{ profile.family_name }}</span>
+            </h4>
+            <br />
+            <h4 class="text-danger">
+                Correo: <span class="info"> {{ profile.email }}</span>
+            </h4>
+            <br />
+            <h4 class="text-danger">
+                Fecha de session:
+                <span class="info"> {{ profile.updated_at | date }}</span>
+            </h4>
+            <br />
+
+            <div *ngIf="profile.email_verified" class="alert alert-success" role="alert">
+                Información protegida por Auth0
+            </div>
+            <div *ngIf="!profile.email_verified" class="alert alert-danger" role="alert">
+                Información desprotegida por Auth0
+            </div>
+            <!-- <h6>{{ profile | json }}</h6> -->
+        </div>
+    </div>
+</div>
